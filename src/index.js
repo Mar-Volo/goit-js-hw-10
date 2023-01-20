@@ -55,9 +55,9 @@ function createCountryCard(arr) {
   <h1 class="country__name">${name.official}</h1>
 </div>
 <ul>
-  <li class="country__capital item">${capital}</li>
-  <li class="country__population item">${population}</li>
-  <li class="country__languages item">${Object.values(languages)}</li>
+  <li class="country__capital item">Capital: ${capital}</li>
+  <li class="country__population item">Population: ${population}</li>
+  <li class="country__languages item">languages: ${Object.values(languages)}</li>
 </ul>`;
     })
     .join('');
