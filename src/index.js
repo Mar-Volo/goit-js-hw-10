@@ -62,5 +62,4 @@ function createCountryCard(arr) {
     })
     .join('');
   countryInfo.insertAdjacentHTML('beforeend', card);
-  console.log(arr);
 }
