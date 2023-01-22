@@ -36,8 +36,11 @@ function searchCountry(e) {
         );
       }
     })
-    .catch(err =>
-      Notiflix.Notify.failure('Oops, there is no country with that name')
+    .catch(
+      err => (
+        console.error(err.toString()),
+        Notiflix.Notify.failure('Oops, there is no country with that name')
+      )
     );
 }
 function createCountryList(arr) {
