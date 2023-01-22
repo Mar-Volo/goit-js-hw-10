@@ -18,23 +18,27 @@ function searchCountry(e) {
     countryInfo.style.display = 'none';
     return;
   }
-  fetchCountries(mainCountry).then(data => {
-    if (data.length >= 2 && data.length <= 10) {
-      countryList.innerHTML = '';
-      countryInfo.innerHTML = '';
-      countryInfo.style.display = 'none';
-      createCountryList(data);
-    } else if (data.length === 1) {
-      countryList.innerHTML = '';
-      countryInfo.innerHTML = '';
-      countryInfo.style.display = 'flex';
-      createCountryCard(data);
-    } else if (data.length > 10) {
-      Notiflix.Notify.info(
-        'Too many matches found. Please enter a more specific name.'
-      );
-    }
-  });
+  fetchCountries(mainCountry)
+    .then(data => {
+      if (data.length >= 2 && data.length <= 10) {
+        countryList.innerHTML = '';
+        countryInfo.innerHTML = '';
+        countryInfo.style.display = 'none';
+        createCountryList(data);
+      } else if (data.length === 1) {
+        countryList.innerHTML = '';
+        countryInfo.innerHTML = '';
+        countryInfo.style.display = 'flex';
+        createCountryCard(data);
+      } else if (data.length > 10) {
+        Notiflix.Notify.info(
+          'Too many matches found. Please enter a more specific name.'
+        );
+      }
+    })
+    .catch(err =>
+      Notiflix.Notify.failure('Oops, there is no country with that name')
+    );
 }
 function createCountryList(arr) {
   const list = arr
@@ -57,7 +61,9 @@ function createCountryCard(arr) {
 <ul>
   <li class="country__capital item">Capital: ${capital}</li>
   <li class="country__population item">Population: ${population}</li>
-  <li class="country__languages item">languages: ${Object.values(languages)}</li>
+  <li class="country__languages item">languages: ${Object.values(
+    languages
+  )}</li>
 </ul>`;
     })
     .join('');
